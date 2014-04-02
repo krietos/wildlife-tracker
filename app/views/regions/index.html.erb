@@ -1,0 +1,18 @@
+<h1>Regions</h1>
+
+<ul>
+  <% @regions.each do |region| %>
+    <li><a href="/regions/<%= region.id %>/edit"><%= region.name %></a><a href="/regions/<%= region.id %>" data-method="delete" rel="nofollow"><button>Delete</button></a></li>
+  <% end %>
+</ul>
+
+<form action="/regions" method="post">
+  <label for="region_name">Name</label>
+  <input id="region_name" name="name" type="text">
+  <button>Create Region</button>
+</form>
+
+
+<p><a href="/species/">Species</a></p>
+
+<p><a href="/sightings/">Sightings</a></p>

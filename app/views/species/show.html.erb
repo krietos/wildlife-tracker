@@ -1,0 +1,43 @@
+<h1><%= @specie.name %></h1>
+
+<% @specie.sightings.each do |sighting| %>
+  <ul>
+    <li><%= "Location: #{sighting.location}" %>
+      <li><%= "Time: #{sighting.time.strftime("%I:%M%p")}" %></li>
+      <li><%= "Date: #{sighting.date}" %></li>
+      <li><%= "Region: #{sighting.region.name}" %></li>
+      <a href="/sightings/<%= sighting.id %>" data-method="delete" rel="nofollow"><button>Delete</button></a>
+      <a href="/sightings/<%= sighting.id %>/edit"><button>Edit</button></a></li>
+  </ul>
+<% end %>
+
+
+
+<form action="/sightings/" method="post">
+  <label for="sighting_location">Location</label>
+  <input id="sighting_location" name="location" type="text"></br>
+  <label for="sighting_date">Date</label>
+  <input id="sighting_date" name="date" type="date"></br>
+  <label for="sighting_time">Time</label>
+  <input id="sighting_time" name="time" type="time"></br>
+  <label for="sighting_region">Region</label>
+  <select id="sighting_region" name="region" type="string">
+    <% Region.all.each do |region|%>
+      <option value="<%= region.id %>"><%= region.name %></option>
+    <% end %>
+  </select>
+  <input id="species" name ="species_id" type="hidden" value="<%= @specie.id %>"></br>
+  <button>Add a Sighting</button>
+</form>
+
+<p><a href="/species/<%= @specie.id %>/edit">Edit</a></p>
+
+
+<p><a href="/species/<%= @specie.id %>"
+      data-confirm="You sure?"
+      data-method="delete"
+      rel="nofollow">Delete</a></p>
+
+<p><a href="/species/">Go Back</a></p>
+
+<a href="/regions/">Regions</a>

@@ -1,0 +1,22 @@
+<h1>Edit sighting</h1>
+
+<% if @sighting.errors.any? %>
+  <h3>Please fix these errors:</h3>
+  <ul>
+    <% @sighting.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<form action="/sightings/<%= @sighting.id %>" method="post">
+  <input name="_method" type="hidden" value="patch">
+  <label for="sighting_location">Location</label>
+  <input id="sighting_location" name="location" type="text" value="<%= @sighting.location %>">
+  <label for="sighting_date">Date</label>
+  <input id="sighting_date" name="date" type="date" value="<%= @sighting.date %>">
+  <label for="sighting_time">Time</label>
+  <input id="sighting_time" name="time" type="time" value="<%= @sighting.time %>">
+  <input id="species_id" name="species_id" type="hidden" value="<%= @sighting.species_id %>">
+  <button>Update Sighting</button>
+</form>
